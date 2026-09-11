@@ -1,11 +1,16 @@
-return """
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return """
 <!DOCTYPE html>
 <html>
 <head>
 <title>SMP Employee Tracker</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -70,14 +75,6 @@ flex:1;
 padding:30px;
 }
 
-.card{
-background:white;
-padding:25px;
-border-radius:20px;
-box-shadow:0 4px 15px rgba(0,0,0,.08);
-margin-bottom:20px;
-}
-
 .cards{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -97,17 +94,11 @@ box-shadow:0 4px 15px rgba(0,0,0,.08);
 color:#005bea;
 }
 
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-}
-
-input{
-width:100%;
-padding:12px;
-border:1px solid #ccc;
-border-radius:10px;
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 button{
@@ -138,10 +129,9 @@ padding:12px;
 border:1px solid #ddd;
 text-align:center;
 }
-
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="header">
@@ -165,7 +155,6 @@ text-align:center;
 <div class="main">
 
 <div class="cards">
-
 <div class="stat">
 <h2>5</h2>
 <p>Total Employees</p>
@@ -185,34 +174,13 @@ text-align:center;
 <h2>100%</h2>
 <p>Active</p>
 </div>
-
 </div>
 
 <div class="card">
 
 <h1>Employee Tracker Dashboard</h1>
-<br>
-
-<div class="form-grid">
-
-<div>
-<label>Employee Name</label><br><br>
-<input type="text" placeholder="Enter Employee Name">
-</div>
-
-<div>
-<label>Department</label><br><br>
-<input type="text" placeholder="Enter Department">
-</div>
-
-</div>
-
-<br>
-
-<button>Track Employee</button>
 
 <table>
-
 <tr>
 <th>Employee ID</th>
 <th>Name</th>
@@ -260,3 +228,6 @@ text-align:center;
 </body>
 </html>
 """
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
